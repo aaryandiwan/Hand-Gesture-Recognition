@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hand Gesture Recognition — Live Demo</title>
+  <meta name="description" content="Real-time hand gesture recognition running entirely in your browser using MediaPipe and a KNN classifier." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="header">
+      <h1>🤚 Hand Gesture Recognition</h1>
+      <p class="subtitle">Real-time gesture detection — runs entirely in your browser</p>
+    </header>
+
+    <!-- ── Main Content ────────────────────────────────────── -->
+    <main class="main">
+      <!-- Video container -->
+      <div class="video-container">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+        <div class="overlay">
+          <div id="prediction" class="prediction">Start camera to begin</div>
+          <div id="confidence" class="confidence"></div>
+          <div id="fps" class="fps"></div>
+        </div>
+        <div id="flash" class="flash"></div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="controls-panel">
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+          <button id="btn-collect" class="tab active" onclick="switchMode('collect')">📸 Collect</button>
+          <button id="btn-predict" class="tab" onclick="switchMode('predict')">🎯 Predict</button>
+        </div>
+
+        <!-- Camera Button -->
+        <button id="btn-camera" class="btn btn-primary" onclick="toggleCamera()">
+          <span id="camera-icon">▶</span> Start Camera
+        </button>
+
+        <!-- Collect Mode Panel -->
+        <div id="collect-panel" class="panel">
+          <h3>Gesture Classes</h3>
+          <p class="hint">Click a gesture button, then show your hand to record samples. Tap rapidly!</p>
+          <div id="gesture-buttons" class="gesture-grid"></div>
+          <div class="actions">
+            <button class="btn btn-success" onclick="trainModel()" id="btn-train">🧠 Train Model</button>
+            <button class="btn btn-danger" onclick="clearData()">🗑️ Clear All Data</button>
+          </div>
+        </div>
+
+        <!-- Predict Mode Panel -->
+        <div id="predict-panel" class="panel hidden">
+          <h3>Live Prediction</h3>
+          <p class="hint">Show gestures to the camera and see real-time predictions.</p>
+          <div id="model-status" class="model-status">
+            <span class="status-dot red"></span> No model trained yet
+          </div>
+        </div>
+
+        <!-- Sample Count -->
+        <div id="sample-counts" class="sample-counts"></div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Built with <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker" target="_blank">MediaPipe</a> + KNN Classifier &bull; 
+      <a href="https://github.com/aaryandiwan/Hand-Gesture-Recognition" target="_blank">GitHub</a></p>
+    </footer>
+  </div>
+
+  <!-- MediaPipe dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

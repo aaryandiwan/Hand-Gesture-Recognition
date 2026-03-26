@@ -1,6 +1,8 @@
 # 🤚 Hand Gesture Recognition
 
-A complete, end-to-end hand gesture recognition pipeline in Python. Collect labelled gesture data through your webcam, train a classifier, and run real-time inference — all from the command line.
+👉 **[Try the Live Web Demo!](https://aaryandiwan.github.io/Hand-Gesture-Recognition/web/)** (Runs entirely in your browser)
+
+A complete, end-to-end hand gesture recognition pipeline in Python and JavaScript. Collect labelled gesture data through your webcam, train a classifier, and run real-time inference.
 
 | Component | Tech |
 |---|---|

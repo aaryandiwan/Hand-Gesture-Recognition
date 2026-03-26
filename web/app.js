@@ -337,7 +337,7 @@ function initGestureButtons() {
     btn.onclick = () => toggleGestureClass(i);
 
     const label = document.createElement("span");
-    label.textContent = `${GESTURE_EMOJIS[i]} ${GESTURE_NAMES[i]}`;
+    label.innerHTML = `<strong>[${i}]</strong> ${GESTURE_EMOJIS[i]} ${GESTURE_NAMES[i]}`;
 
     const count = document.createElement("span");
     count.className = "count";
@@ -359,8 +359,8 @@ function toggleGestureClass(classId) {
   updateGestureButtons();
 
   if (activeClass !== null) {
-    predictionEl.textContent = `Recording: ${GESTURE_EMOJIS[classId]} ${GESTURE_NAMES[classId]}`;
-    confidenceEl.textContent = "Show your hand to collect samples";
+    predictionEl.innerHTML = `Recording: <strong>[${classId}]</strong> ${GESTURE_EMOJIS[classId]} ${GESTURE_NAMES[classId]}`;
+    confidenceEl.textContent = "Show your hand & keep pressing the key to collect samples";
   } else {
     predictionEl.textContent = "Select a gesture class below";
     confidenceEl.textContent = "";
